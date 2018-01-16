@@ -1,0 +1,3 @@
+../character_judgement_samples/T
+../character_judgement_samples/F
+../character_judgement_samples/CH
