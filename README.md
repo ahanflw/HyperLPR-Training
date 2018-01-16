@@ -35,7 +35,7 @@
 
 这里介绍一篇较为经典的论文([End-to-end text recognition with convolutional neural networks](http://ieeexplore.ieee.org/document/6460871/))在Cousera上Andrew Ng的Machine Learning课程中也提到了这种方法。在OpenCV的text模块中也有对应的实现。
 
-它的主要思想是利用一个训练好的正负样本分类器来进行在图像上滑动然后产生概率response图，然后对raw response进行nms(非极大值移植)。在确定字符bdbox,数目之后使用类似于viterbi算法来获取最佳分割路径。
+它的主要思想是利用一个训练好的正负样本分类器来进行在图像上滑动然后产生概率response图，然后对raw response进行nms(非极大值抑制)。在确定字符bdbox,数目之后使用类似于viterbi算法来获取最佳分割路径。
 
 ![Screen Shot 2018-01-16 at 9.04.52 PM](imgs/2.png)
 
