@@ -37,17 +37,15 @@
 
 它的主要思想是利用一个训练好的正负样本分类器来进行在图像上滑动然后产生概率response图，然后对raw response进行nms(非极大值移植)。在确定字符bdbox,数目之后使用类似于viterbi算法来获取最佳分割路径。
 
-![Screen Shot 2018-01-16 at 9.04.52 PM](imgs/Screen Shot 2018-01-16 at 9.04.52 PM.png)
+![Screen Shot 2018-01-16 at 9.04.52 PM](imgs/2.png)
 
 4.基于过分割
 
 很多商业的OCR系统中采用此方法来进行字符分割，其主要的思想类似于object detection中的 region proposal. 先通过投影直方图等方法产生一系列候选的分割点，然后字符使用分类器对车型候选的分割点的不同组合进行分类，产生分割图。最后使用beamsearch,动态规划等方法找到图中的最佳分割路径。在Tesseract中也使用了这种方法来分割字符。
 
-![Screen Shot 2018-01-16 at 8.53.59 PM](imgs/Screen Shot 2018-01-16 at 8.53.59 PM.png)
+![Screen Shot 2018-01-16 at 8.53.59 PM](imgs/0.png)
 
-![Screen Shot 2018-01-16 at 8.54.06 PM](imgs/Screen Shot 2018-01-16 at 8.54.06 PM.png)
-
-
+![Screen Shot 2018-01-16 at 8.54.06 PM](imgs/1.png)
 
 ### HyperLPR中的字符分割方法
 
@@ -55,7 +53,7 @@ HyperLPR中使用的字符分割方法很简单.同样也是基于滑动窗口�
 
 接着我们对车牌做滑动输出每个位置的三种字符概率（这个滑动的窗口的stride可以设高一点使得速度更快）接着我们对这三种利用车牌的模板进行匹配。使得第一个字符的中文概率+后6个字符的正样本概率最大。这个最大的位置即为最佳分割位置。
 
-![Screen Shot 2018-01-16 at 10.29.36 PM](imgs/Screen Shot 2018-01-16 at 10.29.36 PM.png)
+![Screen Shot 2018-01-16 at 10.29.36 PM](imgs/6.png)
 
 ### 字符分割模型的训练
 
@@ -75,15 +73,15 @@ HyperLPR中使用的字符分割方法很简单.同样也是基于滑动窗口�
 
 ##### 负样本
 
-![Screen Shot 2018-01-16 at 10.25.28 PM](imgs/Screen Shot 2018-01-16 at 10.25.28 PM.png)
+![Screen Shot 2018-01-16 at 10.25.28 PM](imgs/5.png)
 
 ##### 中文样本
 
-![Screen Shot 2018-01-16 at 10.23.49 PM](imgs/Screen Shot 2018-01-16 at 10.23.49 PM.png)
+![Screen Shot 2018-01-16 at 10.23.49 PM](imgs/3.png)
 
 ##### 正样本
 
-![Screen Shot 2018-01-16 at 10.24.49 PM](imgs/Screen Shot 2018-01-16 at 10.24.49 PM.png)
+![Screen Shot 2018-01-16 at 10.24.49 PM](imgs/4.png)
 
 #### 开始训练
 
